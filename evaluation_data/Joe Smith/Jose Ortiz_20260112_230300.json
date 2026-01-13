@@ -1,0 +1,491 @@
+{
+  "submission_date": "2026-01-12 23:03:00",
+  "evaluator_name": "Jose Ortiz",
+  "training_date": "1/12/26",
+  "trainer_name": "Joe Smith",
+  "training_location": "CY-Ranch HS",
+  "observation_date": "1/12/26",
+  "eval_type": "Certified",
+  "ratings": [
+    {
+      "key": "plate_work_mechanics_01",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Umpire is not late getting into set position causing timing to change. Is not moving to \"set\" position as pitch is being delivered. Complies with Box / Scissors stance in accordance with TASO guidelines.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_mechanics_02",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Head does not move on pitches that are boarder-line location in the zone. There is no dipping of the head or lateral movement during the flight of the pitch. The umpire does \"track\" the ball into the glove.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_mechanics_03",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Umpire does not slide with the catcher to final position.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_mechanics_04",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Distinctive and noticeable difference in body language between strike call (fully erect) and ball call (crouch).",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_mechanics_05",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Strike-three signal is smooth and features the \"Punch-out\" or \"Pulling-the-Chain\" mechanic.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_mechanics_06",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Consistently calls balls and strikes fluently and consistently in accordance with TASO guidelines.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_mechanics_07",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Consistently keeps aligned between batter and inside edge of home plate to ensure proper slot position and relationship with catcher and strike zone.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_mechanics_08",
+      "section": "Plate Work",
+      "subsection": "Mechanics",
+      "prompt": "Check swing mechanics Drop third strike mechanics",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_timing_01",
+      "section": "Plate Work",
+      "subsection": "Timing",
+      "prompt": "\"Lag time\" interval is consistent for balls and strikes.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_timing_02",
+      "section": "Plate Work",
+      "subsection": "Timing",
+      "prompt": "Does not call pitches quickly. Does not signal strike until catcher has established control of catch.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_timing_03",
+      "section": "Plate Work",
+      "subsection": "Timing",
+      "prompt": "Timing is deliberate enough to allow umpire to distinguish between foul ball and foul tip. With a runner on first, there is extra volume added to ball four to ensure that the catcher does not throw to second base to retire runner who is awarded second base.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_01",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Umpire consistently signals crewmate(s).",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_02",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Consistently trails BR up first-base line for obstruction/interference, swipe tag, or pulled foot situations.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_03",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Taking the overthrow into foul territory (could be verbal communication)",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_04",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Umpire assumes proper position to observe and rule on forced play slide-rule interference plays.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_05",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Umpire rotates fully to third base when needed and is stopped before critical action of the play.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "plate_work_positioning_and_communication_06",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Consistently employs verbal communication when changing positions and when otherwise necessary.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_positioning_and_communication_07",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Establishes an angle on fly ball responsibilities.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_positioning_and_communication_08",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Foul fly ball responsibility between home and first.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "plate_work_positioning_and_communication_09",
+      "section": "Plate Work",
+      "subsection": "Positioning and Communication",
+      "prompt": "Correctly reads \"swipe tag/collision tag\" play at the plate and will assume proper distance and position from action allowing for unobstructed view entire play (head to toe) including tag.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_positioning_01",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "U1 quickly assumes the proper angle when taking throws at first base from infielders.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_positioning_02",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "When making the call, the umpire is completely set before the critical action of the play.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_positioning_03",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Is set when fielder gloves the batted ball and for play at first base.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_positioning_04",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Re-adjusts position employing a \"read step\" or \"lean and a look\" technique as needed to rule on situations where throw is off-line.",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "base_work_positioning_05",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Assumes proper position to gain an angle to rule on plays at second and third.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_positioning_06",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Does not chase runner into second or third.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_positioning_07",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Has vision on the open side of the fielder receiving the throw.",
+      "selection": "2 - Needs Improvement",
+      "score": 2
+    },
+    {
+      "key": "base_work_positioning_08",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Displays full engagement by assuming an athletic stance/set before critical action (ball to glove-glove to tag).",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_positioning_09",
+      "section": "Base Work",
+      "subsection": "Positioning",
+      "prompt": "Makes secondary adjustment if needed before ruling on play",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_01",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Routine out calls are consistently performed without animation and after all playing action has ceased.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_02",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Call not made until Voluntary and intentional release has been assured.",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_03",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "On important, close and exciting plays (ICE), signals are performed forcefully and confidently.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_04",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Uses \"out\" or \"safe\" signal on outfield or infield fly balls only when validity of the catch is in question.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_05",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Umpire uses secondary signals for believability (e.g. pulled foot, juggled ball, ball on ground, etc.).",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_06",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Uses \"safe\" signal to remove questions pertaining to interference and obstruction.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_07",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Consistently signals partner(s) and employs verbal communication as needed.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "base_work_continued_timing_and_mechanics_08",
+      "section": "Base Work",
+      "subsection": "Timing and Mechanics",
+      "prompt": "Signals on plays that have the potential of retiring the runner.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_rule_enforcement_01",
+      "section": "Miscellaneous",
+      "subsection": "Rule Enforcement",
+      "prompt": "Balk calls are immediate and confident; combined with verbal and physical signal.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_rule_enforcement_02",
+      "section": "Miscellaneous",
+      "subsection": "Rule Enforcement",
+      "prompt": "Enforce the force-play slide rule consistently and properly reposition runners if necessary",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "miscellaneous_rule_enforcement_03",
+      "section": "Miscellaneous",
+      "subsection": "Rule Enforcement",
+      "prompt": "Plate umpire enforces the \"foot in box\" rule by pointing the batter back into the box.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_rule_enforcement_04",
+      "section": "Miscellaneous",
+      "subsection": "Rule Enforcement",
+      "prompt": "Plate umpire positions himself in proper position between innings and enforces warm-up pitch limits.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "miscellaneous_rule_enforcement_05",
+      "section": "Miscellaneous",
+      "subsection": "Rule Enforcement",
+      "prompt": "All other NFHS rules and interpretations are properly and consistently administered without regard to resulting adverse reactions.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "miscellaneous_game_management_01",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Umpire conducts proper pregame conference",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "miscellaneous_game_management_02",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Umpires take control or initiate control over dugouts located along appropriate foul line. Does not exacerbate situations with overly aggressive or arrogant actions or display a condescending attitude.",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "miscellaneous_game_management_03",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Does not ignore occurrences on the field that require attention to maintain order and control. Will take steps to diffuse these situations immediately to eliminate future reprisals.",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "miscellaneous_game_management_04",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Listens to coach's reasonable and non-emotional appeals. Only allows head coach to dispute rulings",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "miscellaneous_game_management_05",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "In approved situations, umpires huddle when necessary to gather consensus on disputed play rulings",
+      "selection": "4 - Very Good",
+      "score": 4
+    },
+    {
+      "key": "miscellaneous_game_management_06",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Employs preventative officiating techniques without attracting attention.",
+      "selection": "3 - Satisfactory",
+      "score": 3
+    },
+    {
+      "key": "miscellaneous_game_management_07",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Employs \"ignore, acknowledge, warn, restrict/eject\" steps for handling continued objections.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_game_management_08",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Umpire adheres to pace of play techniques.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_game_management_09",
+      "section": "Miscellaneous",
+      "subsection": "Game Management",
+      "prompt": "Avoids excessive, or unnecessary conversation with uniformed personnel or spectators during the game.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_appearance_and_professionalism_01",
+      "section": "Miscellaneous",
+      "subsection": "Appearance and Professionalism",
+      "prompt": "Pants are of the proper shade of gray. They are clean and pressed.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_appearance_and_professionalism_02",
+      "section": "Miscellaneous",
+      "subsection": "Appearance and Professionalism",
+      "prompt": "Shirt / jacket is not faded, and color is true. Hat appears clean.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_appearance_and_professionalism_03",
+      "section": "Miscellaneous",
+      "subsection": "Appearance and Professionalism",
+      "prompt": "Shoes are cleaned and polished.",
+      "selection": "5 - Excellent",
+      "score": 5
+    },
+    {
+      "key": "miscellaneous_appearance_and_professionalism_04",
+      "section": "Miscellaneous",
+      "subsection": "Appearance and Professionalism",
+      "prompt": "Demeanor is athletic and aware.",
+      "selection": "5 - Excellent",
+      "score": 5
+    }
+  ],
+  "recommendation": "Approved for Independent Evaluation",
+  "average_score": 0.8654545454545455,
+  "score_percentage": 86.54545454545455,
+  "rated_item_count": 55,
+  "score_counts": {
+    "5 - Excellent": 27,
+    "4 - Very Good": 20,
+    "3 - Satisfactory": 7,
+    "2 - Needs Improvement": 1,
+    "1 - Unsatisfactory": 0,
+    "Not Observed": 0
+  },
+  "section_totals": [
+    {
+      "section": "Plate Work",
+      "score": 90.0,
+      "possible": 100,
+      "percentage": 0.9
+    },
+    {
+      "section": "Base Work",
+      "score": 71.0,
+      "possible": 85,
+      "percentage": 0.8352941176470589
+    },
+    {
+      "section": "Miscellaneous",
+      "score": 77.0,
+      "possible": 90,
+      "percentage": 0.8555555555555555
+    }
+  ],
+  "total_score": 238,
+  "total_possible": 275,
+  "comments": {
+    "strengths": "",
+    "improvement": "",
+    "development": "",
+    "overall": ""
+  }
+}
