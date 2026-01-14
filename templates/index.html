@@ -77,9 +77,11 @@
                     <div class="subsection mb-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="subsection-title mb-0">{{ subsection['name'] }}</h5>
-                            {% if subsection.get('max_score') %}
-                            <span class="badge bg-secondary">Target: {{ subsection['max_score'] }} points</span>
-                            {% endif %}
+                            <span class="section-score-badge badge bg-info"
+                                  data-section="{{ section['name'] }}"
+                                  data-subsection="{{ subsection['name'] }}">
+                                Score: <span class="score-raw">0/0</span> (<span class="score-percentage">0%</span>)
+                            </span>
                         </div>
                         {% for item in subsection['items'] %}
                         <div class="row mb-3 align-items-center">
@@ -87,7 +89,11 @@
                                 <label for="rating_{{ item['key'] }}" class="form-label">{{ item['text'] }}</label>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select" id="rating_{{ item['key'] }}" name="rating_{{ item['key'] }}">
+                                <select class="form-select rating-select"
+                                        id="rating_{{ item['key'] }}"
+                                        name="rating_{{ item['key'] }}"
+                                        data-section="{{ section['name'] }}"
+                                        data-subsection="{{ subsection['name'] }}">
                                     <option value="Select result" selected>Select result</option>
                                     {% for option in rating_options %}
                                     <option value="{{ option }}">{{ option }}</option>
