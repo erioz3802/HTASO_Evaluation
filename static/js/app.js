@@ -163,14 +163,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Real-time section score calculation
     const ratingSelects = document.querySelectorAll('.rating-select');
+    console.log('Found ' + ratingSelects.length + ' rating selects');
+
     ratingSelects.forEach(function(select) {
         select.addEventListener('change', function() {
+            console.log('Rating changed:', this.value);
             updateSectionScores();
         });
     });
 
     // Initialize section scores on page load
-    updateSectionScores();
+    setTimeout(function() {
+        updateSectionScores();
+    }, 100);
 });
 
 /**
@@ -178,6 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function updateSectionScores() {
     const scoreBadges = document.querySelectorAll('.section-score-badge');
+    console.log('Found ' + scoreBadges.length + ' score badges');
 
     scoreBadges.forEach(function(badge) {
         const section = badge.dataset.section;
@@ -188,12 +194,15 @@ function updateSectionScores() {
             `.rating-select[data-section="${section}"][data-subsection="${subsection}"]`
         );
 
+        console.log(`Section: ${subsection}, Found ${selects.length} selects`);
+
         let totalScore = 0;
         let maxPossible = 0;
         let ratedCount = 0;
 
         selects.forEach(function(select) {
             const value = select.value;
+            console.log(`  Select value: ${value}`);
 
             // Skip if not rated or "Select result"
             if (!value || value === 'Select result' || value === 'Not Observed') {
@@ -207,8 +216,11 @@ function updateSectionScores() {
                 totalScore += score;
                 maxPossible += 5; // Maximum is always 5
                 ratedCount++;
+                console.log(`    Counted: ${score} points`);
             }
         });
+
+        console.log(`  Total: ${totalScore}/${maxPossible} (${ratedCount} rated)`);
 
         // Update badge display
         const scoreRaw = badge.querySelector('.score-raw');
