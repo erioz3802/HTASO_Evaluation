@@ -1,0 +1,79 @@
+"""Main Flask application for HTASO Umpire Evaluation system."""
+import os
+from flask import Flask
+from config import config
+from models.database import db
+from flask_migrate import Migrate
+
+
+def create_app(config_name=None):
+    """Application factory pattern.
+
+    Args:
+        config_name: Configuration name (development, production, testing)
+
+    Returns:
+        Flask application instance
+    """
+    if config_name is None:
+        config_name = os.getenv('FLASK_ENV', 'development')
+
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+
+    # Initialize database
+    db.init_app(app)
+    migrate = Migrate(app, db)
+
+    # Create tables if they don't exist
+    with app.app_context():
+        db.create_all()
+        # Initialize admin if not exists
+        from models.database import Admin
+        from utils.auth import init_admin_db
+        init_admin_db()
+
+    # Ensure data directories exist (for legacy JSON and Excel template)
+    app.config['DATA_DIR'].mkdir(parents=True, exist_ok=True)
+
+    # Register blueprints
+    from routes.main import main_bp
+    from routes.admin import admin_bp
+
+    app.register_blueprint(main_bp)
+    app.register_blueprint(admin_bp)
+
+    # Custom template filters
+    @app.template_filter('percentage')
+    def percentage_filter(value):
+        """Format float as percentage."""
+        if value is None:
+            return "N/A"
+        return f"{value * 100:.0f}%"
+
+    @app.template_filter('format_score')
+    def format_score_filter(score, possible):
+        """Format score as fraction."""
+        if possible is None or possible == 0:
+            return "0/0"
+        return f"{score:.0f}/{possible:.0f}"
+
+    # Error handlers
+    @app.errorhandler(404)
+    def not_found_error(error):
+        """Handle 404 errors."""
+        from flask import render_template
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        """Handle 500 errors."""
+        from flask import render_template
+        return render_template('errors/500.html'), 500
+
+    return app
+
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(host='0.0.0.0', port=8502, debug=True)

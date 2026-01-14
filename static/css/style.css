@@ -1,0 +1,339 @@
+/* HTASO Umpire Evaluation - Custom Styles */
+/* Matches the desktop application design */
+
+:root {
+    --primary: #1D3557;
+    --primary-light: #457B9D;
+    --secondary: #2A9D8F;
+    --accent: #E76F51;
+    --bg: #F1F5F9;
+    --card: #FFFFFF;
+    --text: #1F2937;
+    --text-light: #6B7280;
+    --border: #D1D5DB;
+    --shadow: #E0E7FF;
+}
+
+/* Global Styles */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.app-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+    max-height: 100px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+.header-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-subtitle {
+    color: #D1E3F8;
+    font-size: 0.95rem;
+}
+
+.admin-section {
+    text-align: right;
+}
+
+/* Main Content Area */
+.app-main {
+    min-height: calc(100vh - 200px);
+}
+
+/* Modern Card Styles */
+.modern-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    background-color: var(--card);
+}
+
+.modern-card .card-header {
+    background-color: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+}
+
+.modern-card .card-title {
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.modern-card .card-subtitle {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+.modern-card .card-body {
+    padding: 1.5rem;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+    border-color: var(--border);
+    border-radius: 6px;
+    padding: 0.625rem 0.875rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(29, 53, 87, 0.25);
+}
+
+.form-label {
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+.btn-secondary {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+.btn-accent {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.btn-accent:hover {
+    background-color: #d75a3b;
+    border-color: #d75a3b;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #F4A261;
+    border-color: #F4A261;
+}
+
+/* Recommendation Options */
+.recommendation-option {
+    padding: 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.recommendation-option:hover {
+    background-color: #F9FAFB;
+}
+
+.recommendation-indicator {
+    width: 6px;
+    height: 32px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* Subsection Styles */
+.subsection {
+    padding: 1rem;
+    border-left: 3px solid var(--primary-light);
+    background-color: #F9FAFB;
+    border-radius: 4px;
+}
+
+.subsection-title {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Table Styles */
+.table {
+    color: var(--text);
+}
+
+.table thead {
+    background-color: #F9FAFB;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #F3F4F6;
+}
+
+/* Badge Styles */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent) !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 6px;
+    border: none;
+}
+
+.alert-success {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.alert-danger,
+.alert-error {
+    background-color: #FEE2E2;
+    color: #991B1B;
+}
+
+.alert-info {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+}
+
+.alert-warning {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+/* Footer */
+.app-footer {
+    background-color: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.modal-header {
+    background-color: #F9FAFB;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Loading Spinner */
+.spinner-border {
+    border-color: var(--primary);
+    border-right-color: transparent;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 1.25rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .app-header {
+        padding: 1rem 0;
+    }
+
+    .modern-card .card-body {
+        padding: 1rem;
+    }
+
+    .btn-lg {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .app-header,
+    .app-footer,
+    .btn,
+    .alert {
+        display: none !important;
+    }
+
+    .modern-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert {
+    animation: fadeIn 0.3s ease-in;
+}
