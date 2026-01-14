@@ -160,7 +160,82 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         });
     });
+
+    // Real-time section score calculation
+    const ratingSelects = document.querySelectorAll('.rating-select');
+    ratingSelects.forEach(function(select) {
+        select.addEventListener('change', function() {
+            updateSectionScores();
+        });
+    });
+
+    // Initialize section scores on page load
+    updateSectionScores();
 });
+
+/**
+ * Update all section scores based on current ratings
+ */
+function updateSectionScores() {
+    const scoreBadges = document.querySelectorAll('.section-score-badge');
+
+    scoreBadges.forEach(function(badge) {
+        const section = badge.dataset.section;
+        const subsection = badge.dataset.subsection;
+
+        // Find all rating selects for this subsection
+        const selects = document.querySelectorAll(
+            `.rating-select[data-section="${section}"][data-subsection="${subsection}"]`
+        );
+
+        let totalScore = 0;
+        let maxPossible = 0;
+        let ratedCount = 0;
+
+        selects.forEach(function(select) {
+            const value = select.value;
+
+            // Skip if not rated or "Select result"
+            if (!value || value === 'Select result' || value === 'Not Observed') {
+                return;
+            }
+
+            // Extract numeric value (e.g., "5 - Excellent" -> 5)
+            const match = value.match(/^(\d+)/);
+            if (match) {
+                const score = parseInt(match[1]);
+                totalScore += score;
+                maxPossible += 5; // Maximum is always 5
+                ratedCount++;
+            }
+        });
+
+        // Update badge display
+        const scoreRaw = badge.querySelector('.score-raw');
+        const scorePercentage = badge.querySelector('.score-percentage');
+
+        if (ratedCount === 0) {
+            scoreRaw.textContent = '0/0';
+            scorePercentage.textContent = '0%';
+            badge.classList.remove('bg-success', 'bg-warning', 'bg-danger');
+            badge.classList.add('bg-info');
+        } else {
+            scoreRaw.textContent = `${totalScore}/${maxPossible}`;
+            const percentage = Math.round((totalScore / maxPossible) * 100);
+            scorePercentage.textContent = `${percentage}%`;
+
+            // Color code based on percentage
+            badge.classList.remove('bg-info', 'bg-success', 'bg-warning', 'bg-danger');
+            if (percentage >= 80) {
+                badge.classList.add('bg-success');
+            } else if (percentage >= 60) {
+                badge.classList.add('bg-warning');
+            } else {
+                badge.classList.add('bg-danger');
+            }
+        }
+    });
+}
 
 /**
  * Show a toast notification
