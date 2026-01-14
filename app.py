@@ -62,14 +62,12 @@ def create_app(config_name=None):
     @app.errorhandler(404)
     def not_found_error(error):
         """Handle 404 errors."""
-        from flask import render_template
-        return render_template('errors/404.html'), 404
+        return '<h1>404 - Page Not Found</h1><p>The requested page does not exist.</p>', 404
 
     @app.errorhandler(500)
     def internal_error(error):
         """Handle 500 errors."""
-        from flask import render_template
-        return render_template('errors/500.html'), 500
+        return '<h1>500 - Internal Server Error</h1><p>Something went wrong. Please try again later.</p>', 500
 
     return app
 
