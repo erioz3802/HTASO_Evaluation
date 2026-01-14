@@ -238,9 +238,9 @@ function updateSectionScores() {
 
             // Color code based on percentage
             badge.classList.remove('bg-info', 'bg-success', 'bg-warning', 'bg-danger');
-            if (percentage >= 80) {
+            if (percentage >= 85) {
                 badge.classList.add('bg-success');
-            } else if (percentage >= 60) {
+            } else if (percentage >= 70) {
                 badge.classList.add('bg-warning');
             } else {
                 badge.classList.add('bg-danger');
