@@ -31,7 +31,7 @@ class Config:
     # Data storage (legacy JSON support for migration)
     DATA_DIR = Path(os.getenv('DATA_DIR', BASE_DIR.parent / 'evaluation_data'))
     ADMIN_CONFIG = Path(os.getenv('ADMIN_CONFIG', DATA_DIR / 'admin_config.json'))
-    CRITERIA_PATH = Path(os.getenv('CRITERIA_PATH', BASE_DIR.parent / 'Evaluator Training Eval form.xlsx'))
+    CRITERIA_PATH = Path(os.getenv('CRITERIA_PATH', BASE_DIR / 'Evaluator Training Eval form.xlsx'))
 
     # File upload settings
     MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 16 * 1024 * 1024))  # 16MB
