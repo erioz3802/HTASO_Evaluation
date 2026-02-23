@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluation Form - HTASO{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 px-4">
+    <form method="POST" action="{{ url_for('main.submit_evaluation') }}" id="evaluationForm">
+        <!-- Evaluator Details Card -->
+        <div class="card modern-card mb-4">
+            <div class="card-header">
+                <h3 class="card-title mb-1">Evaluator & Session Details</h3>
+                <p class="card-subtitle">Complete these required fields before scoring.</p>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="evaluator_name" class="form-label fw-bold">Evaluator Name *</label>
+                        <input type="text" class="form-control" id="evaluator_name" name="evaluator_name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="trainer_name" class="form-label fw-bold">Trainer Name *</label>
+                        <input type="text" class="form-control" id="trainer_name" name="trainer_name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="training_date" class="form-label fw-bold">Training Date *</label>
+                        <input type="text" class="form-control" id="training_date" name="training_date" placeholder="MM/DD/YYYY" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="observation_date" class="form-label fw-bold">Observation Date</label>
+                        <input type="text" class="form-control" id="observation_date" name="observation_date" placeholder="MM/DD/YYYY">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="training_location" class="form-label fw-bold">Training Location</label>
+                        <input type="text" class="form-control" id="training_location" name="training_location">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="eval_type" class="form-label fw-bold">Type of Evaluation</label>
+                        <input type="text" class="form-control" id="eval_type" name="eval_type">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overall Recommendation Card -->
+        <div class="card modern-card mb-4">
+            <div class="card-header">
+                <h3 class="card-title mb-1">Overall Recommendation</h3>
+                <p class="card-subtitle">Select the option that best reflects the evaluator's readiness.</p>
+            </div>
+            <div class="card-body">
+                {% for option in recommendation_options %}
+                <div class="recommendation-option mb-3">
+                    <div class="d-flex align-items-center">
+                        <div class="recommendation-indicator me-3" style="background-color: {{ recommendation_colors[option] }}"></div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="recommendation" id="rec_{{ loop.index }}" value="{{ option }}" required>
+                            <label class="form-check-label fw-medium" for="rec_{{ loop.index }}">
+                                {{ option }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Evaluation Criteria -->
+        {% if criteria_structure %}
+            {% for section in criteria_structure %}
+            <div class="card modern-card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title mb-1">{{ section['name'] }}</h3>
+                    <p class="card-subtitle">Sourced from template section: {{ section['raw_name'] }}</p>
+                </div>
+                <div class="card-body">
+                    {% for subsection in section.get('subsections', []) %}
+                    <div class="subsection mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="subsection-title mb-0">{{ subsection['name'] }}</h5>
+                            <span class="section-score-badge badge bg-info"
+                                  data-section="{{ section['name'] }}"
+                                  data-subsection="{{ subsection['name'] }}">
+                                Avg: <span class="score-avg">—</span> | Rank: <span class="score-rank">—</span> | <span class="score-percentage">0%</span>
+                            </span>
+                        </div>
+                        {% for item in subsection['items'] %}
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-8">
+                                <label for="rating_{{ item['key'] }}" class="form-label">{{ item['text'] }}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select rating-select"
+                                        id="rating_{{ item['key'] }}"
+                                        name="rating_{{ item['key'] }}"
+                                        data-section="{{ section['name'] }}"
+                                        data-subsection="{{ subsection['name'] }}">
+                                    <option value="Select result" selected>Select result</option>
+                                    {% for option in rating_options %}
+                                    <option value="{{ option }}">{{ option }}</option>
+                                    {% endfor %}
+                                    {% if item.get('allow_na') %}
+                                    <option value="{{ optional_na_label }}">{{ optional_na_label }}</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Evaluation criteria could not be loaded from the Excel template. Please contact an administrator.
+            </div>
+        {% endif %}
+
+        <!-- Comments Section -->
+        <div class="card modern-card mb-4">
+            <div class="card-header">
+                <h3 class="card-title mb-1">Comments</h3>
+                <p class="card-subtitle">Provide detailed feedback and observations</p>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <label for="strengths" class="form-label fw-bold">💪 Strengths Observed</label>
+                    <small class="d-block text-muted mb-2">Document specific examples of strong performance and positive attributes</small>
+                    <textarea class="form-control" id="strengths" name="strengths" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="improvement" class="form-label fw-bold">📈 Areas for Improvement</label>
+                    <small class="d-block text-muted mb-2">Identify specific areas needing development with constructive feedback</small>
+                    <textarea class="form-control" id="improvement" name="improvement" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="development" class="form-label fw-bold">🎯 Recommendations for Development</label>
+                    <small class="d-block text-muted mb-2">Suggest specific actions, training, or resources for growth</small>
+                    <textarea class="form-control" id="development" name="development" rows="4"></textarea>
+                </div>
+                <div class="mb-0">
+                    <label for="overall" class="form-label fw-bold">📝 Overall Assessment Comments</label>
+                    <small class="d-block text-muted mb-2">Provide additional observations, context, or summary comments</small>
+                    <textarea class="form-control" id="overall" name="overall" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card modern-card">
+            <div class="card-body text-center">
+                <button type="submit" class="btn btn-primary btn-lg me-2">
+                    <i class="bi bi-check-circle me-2"></i> Submit Evaluation
+                </button>
+                <button type="submit" formaction="{{ url_for('main.export_current_pdf') }}" formnovalidate class="btn btn-accent btn-lg me-2">
+                    <i class="bi bi-file-earmark-pdf me-2"></i> Export PDF Report
+                </button>
+                <button type="submit" formaction="{{ url_for('main.export_current_word') }}" formnovalidate class="btn btn-secondary btn-lg me-2">
+                    <i class="bi bi-file-earmark-word me-2"></i> Export Word Report
+                </button>
+                <button type="reset" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-x-circle me-2"></i> Clear Form
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Form validation
+document.getElementById('evaluationForm').addEventListener('submit', function(e) {
+    // Check if submitting (not exporting)
+    if (e.submitter && e.submitter.formAction &&
+        (e.submitter.formAction.includes('export') || e.submitter.formNoValidate)) {
+        return; // Allow export without full validation
+    }
+
+    // Validate required fields
+    const evaluatorName = document.getElementById('evaluator_name').value.trim();
+    const trainerName = document.getElementById('trainer_name').value.trim();
+    const trainingDate = document.getElementById('training_date').value.trim();
+    const recommendation = document.querySelector('input[name="recommendation"]:checked');
+
+    if (!evaluatorName || !trainerName || !trainingDate || !recommendation) {
+        e.preventDefault();
+        alert('Please fill in all required fields (marked with *)');
+        return false;
+    }
+});
+
+// Confirmation on form reset
+document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
+    if (!confirm('Are you sure you want to clear all fields?')) {
+        e.preventDefault();
+    }
+});
+</script>
+{% endblock %}

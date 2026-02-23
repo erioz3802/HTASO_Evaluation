@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - HTASO{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 px-4">
+    <!-- Dashboard Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2><i class="bi bi-speedometer2 me-2"></i> Administrator Dashboard</h2>
+            <p class="text-muted mb-0">Manage and view all evaluation submissions</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                <i class="bi bi-key me-2"></i> Change Password
+            </button>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="card modern-card mb-4">
+        <div class="card-body">
+            <form method="GET" action="{{ url_for('admin.dashboard') }}" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="trainer_filter" class="form-label fw-bold">Filter by Trainer</label>
+                    <select class="form-select" id="trainer_filter" name="trainer" onchange="this.form.submit()">
+                        <option value="all" {% if not filter_trainer or filter_trainer == 'all' %}selected{% endif %}>All Trainers</option>
+                        {% for trainer in trainers %}
+                        <option value="{{ trainer }}" {% if filter_trainer == trainer %}selected{% endif %}>{{ trainer }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-8 text-end">
+                    <p class="mb-0">
+                        <strong>{{ evaluations|length }}</strong> evaluation{{ 's' if evaluations|length != 1 else '' }} found
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Evaluations Table -->
+    <div class="card modern-card">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Submitted Evaluations</h3>
+        </div>
+        <div class="card-body">
+            {% if evaluations %}
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="evaluationsTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Trainer</th>
+                            <th>Evaluator</th>
+                            <th>Training Date</th>
+                            <th>Submission Date</th>
+                            <th>Avg</th>
+                            <th>Rank</th>
+                            <th>Recommendation</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for eval in evaluations %}
+                        <tr>
+                            <td>{{ eval.trainer }}</td>
+                            <td><strong>{{ eval.evaluator }}</strong></td>
+                            <td>{{ eval.training_date }}</td>
+                            <td>{{ eval.submission_date }}</td>
+                            <td>
+                                {% if eval.total_possible and eval.total_possible > 0 %}
+                                    {% set htaso_avg = 6.0 - (eval.total_score / (eval.total_possible / 5.0)) %}
+                                    <strong>{{ "%.2f"|format(htaso_avg) }}</strong>
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if eval.total_possible and eval.total_possible > 0 %}
+                                    {% set htaso_avg = 6.0 - (eval.total_score / (eval.total_possible / 5.0)) %}
+                                    {% set rank = (htaso_avg + 0.5)|int %}
+                                    <span class="badge {% if rank <= 2 %}bg-success{% elif rank <= 3 %}bg-warning{% else %}bg-danger{% endif %}">{{ rank }}</span>
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </td>
+                            <td><small>{{ eval.recommendation }}</small></td>
+                            <td class="text-center">
+                                <a href="{{ url_for('admin.evaluation_detail', eval_id=eval.id) }}" class="btn btn-sm btn-primary" title="View Details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{{ url_for('admin.export_evaluation_pdf', eval_id=eval.id) }}" class="btn btn-sm btn-accent" title="Export PDF">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                </a>
+                                <a href="{{ url_for('admin.export_evaluation_word', eval_id=eval.id) }}" class="btn btn-sm btn-secondary" title="Export Word">
+                                    <i class="bi bi-file-earmark-word"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-inbox text-muted" style="font-size: 4rem;"></i>
+                <p class="text-muted mt-3 mb-0">No evaluations have been submitted yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.change_password') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Admin Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="current_password" class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required minlength="6">
+                        <small class="form-text text-muted">Minimum 6 characters</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required minlength="6">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

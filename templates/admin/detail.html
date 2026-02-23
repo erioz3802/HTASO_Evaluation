@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluation Detail - {{evaluation.evaluator_name}} - HTASO{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 px-4">
+    <!-- Header with Actions -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Evaluation Details</h2>
+            <p class="text-muted mb-0">{{ evaluation.evaluator_name }}</p>
+        </div>
+        <div>
+            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary me-2">
+                <i class="bi bi-arrow-left me-2"></i> Back to Dashboard
+            </a>
+            <a href="{{ url_for('admin.export_evaluation_pdf', eval_id=eval_id) }}" class="btn btn-accent me-2">
+                <i class="bi bi-file-earmark-pdf me-2"></i> Export PDF
+            </a>
+            <a href="{{ url_for('admin.export_evaluation_word', eval_id=eval_id) }}" class="btn btn-secondary">
+                <i class="bi bi-file-earmark-word me-2"></i> Export Word
+            </a>
+        </div>
+    </div>
+
+    <!-- Basic Information -->
+    <div class="card modern-card mb-4">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Basic Information</h3>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <strong>Evaluator:</strong> {{ evaluation.evaluator_name }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Trainer:</strong> {{ evaluation.trainer_name }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Training Date:</strong> {{ evaluation.training_date }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Observation Date:</strong> {{ evaluation.observation_date or 'N/A' }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Location:</strong> {{ evaluation.training_location or 'N/A' }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Type:</strong> {{ evaluation.eval_type or 'N/A' }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Submission Date:</strong> {{ evaluation.submission_date }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Average Score:</strong>
+                    {% if evaluation.total_possible and evaluation.total_possible > 0 %}
+                        {% set htaso_avg = 6.0 - (evaluation.total_score / (evaluation.total_possible / 5.0)) %}
+                        {% set rank = (htaso_avg + 0.5)|int %}
+                        <span class="badge {% if rank <= 2 %}bg-success{% elif rank <= 3 %}bg-warning{% else %}bg-danger{% endif %}">
+                            Avg: {{ "%.2f"|format(htaso_avg) }} | Rank: {{ rank }} | {{ evaluation.average_score|percentage }}
+                        </span>
+                    {% else %}
+                        <span class="badge bg-info">N/A</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Scores -->
+    {% if evaluation.section_totals %}
+    <div class="card modern-card mb-4">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Section Scores</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>HTASO Avg</th>
+                            <th>Rank</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for section in evaluation.section_totals %}
+                        <tr>
+                            <td>{{ section.section }}</td>
+                            {% if section.possible and section.possible > 0 %}
+                                {% set sec_htaso_avg = 6.0 - (section.score / (section.possible / 5.0)) %}
+                                {% set sec_rank = (sec_htaso_avg + 0.5)|int %}
+                                <td><strong>{{ "%.2f"|format(sec_htaso_avg) }}</strong></td>
+                                <td><span class="badge {% if sec_rank <= 2 %}bg-success{% elif sec_rank <= 3 %}bg-warning{% else %}bg-danger{% endif %}">{{ sec_rank }}</span></td>
+                            {% else %}
+                                <td>—</td>
+                                <td>—</td>
+                            {% endif %}
+                            <td><span class="badge bg-info">{{ section.percentage|percentage }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Ratings Summary -->
+    <div class="card modern-card mb-4">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Ratings Summary</h3>
+        </div>
+        <div class="card-body">
+            {% set ns = namespace(current_section='', current_subsection='') %}
+            {% for rating in evaluation.ratings %}
+                {% if rating.section != ns.current_section %}
+                    {% if ns.current_section != '' %}
+                        </div></div>
+                    {% endif %}
+                    <div class="mb-4">
+                        <h5 class="text-primary">{{ rating.section }}</h5>
+                    {% set ns.current_section = rating.section %}
+                    {% set ns.current_subsection = '' %}
+                {% endif %}
+
+                {% if rating.subsection != ns.current_subsection %}
+                    {% if ns.current_subsection != '' %}
+                        </div>
+                    {% endif %}
+                    <div class="ms-3 mb-3">
+                        <h6 class="text-secondary">{{ rating.subsection }}</h6>
+                    {% set ns.current_subsection = rating.subsection %}
+                {% endif %}
+
+                <div class="ms-4 mb-2">
+                    <span class="text-muted">•</span> {{ rating.prompt }}
+                    <span class="badge bg-light text-dark">{{ rating.selection or 'Not Rated' }}</span>
+                </div>
+            {% endfor %}
+            {% if ns.current_section != '' %}
+                </div></div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recommendation -->
+    <div class="card modern-card mb-4">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Overall Recommendation</h3>
+        </div>
+        <div class="card-body">
+            <p class="fs-5 text-success mb-0">{{ evaluation.recommendation or 'Not Selected' }}</p>
+        </div>
+    </div>
+
+    <!-- Comments -->
+    {% if evaluation.comments %}
+    <div class="card modern-card mb-4">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Evaluator Comments</h3>
+        </div>
+        <div class="card-body">
+            {% if evaluation.comments.strengths %}
+            <div class="mb-4">
+                <h5>💪 Strengths Observed</h5>
+                <p class="mb-0" style="white-space: pre-wrap;">{{ evaluation.comments.strengths }}</p>
+            </div>
+            {% endif %}
+            {% if evaluation.comments.improvement %}
+            <div class="mb-4">
+                <h5>📈 Areas for Improvement</h5>
+                <p class="mb-0" style="white-space: pre-wrap;">{{ evaluation.comments.improvement }}</p>
+            </div>
+            {% endif %}
+            {% if evaluation.comments.development %}
+            <div class="mb-4">
+                <h5>🎯 Development Recommendations</h5>
+                <p class="mb-0" style="white-space: pre-wrap;">{{ evaluation.comments.development }}</p>
+            </div>
+            {% endif %}
+            {% if evaluation.comments.overall %}
+            <div class="mb-0">
+                <h5>📝 Overall Assessment Comments</h5>
+                <p class="mb-0" style="white-space: pre-wrap;">{{ evaluation.comments.overall }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
